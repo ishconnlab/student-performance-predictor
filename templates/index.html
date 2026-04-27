@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Performance Predictor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 to-indigo-200 min-h-screen flex items-center justify-center">
+
+<div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl">
+
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">
+        🎓 Student Performance Predictor
+    </h1>
+    <p class="text-center text-gray-500 mb-6">
+        Enter student details to estimate final grade
+    </p>
+
+    <form action="/predict" method="post" class="grid grid-cols-2 gap-4">
+
+        <!-- Inputs -->
+        <input name="age" type="number" min="10" max="25" placeholder="Age" class="input" required>
+        <input name="absences" type="number" min="0" max="100" placeholder="Absences" class="input" required>
+        <input name="failures" type="number" min="0" max="5" placeholder="Failures" class="input" required>
+        <input name="studytime" type="number" min="1" max="4" placeholder="Study Time (1-4)" class="input" required>
+        <input name="goout" type="number" min="1" max="5" placeholder="Go Out (1-5)" class="input" required>
+        <input name="health" type="number" min="1" max="5" placeholder="Health (1-5)" class="input" required>
+        <input name="freetime" type="number" min="1" max="5" placeholder="Free Time (1-5)" class="input" required>
+        <input name="traveltime" type="number" min="1" max="4" placeholder="Travel Time (1-4)" class="input" required>
+        <input name="Walc" type="number" min="1" max="5" placeholder="Weekend Alcohol (1-5)" class="input" required>
+        <input name="Fedu" type="number" min="0" max="4" placeholder="Father Education (0-4)" class="input" required>
+        <input name="G1" type="number" min="0" max="20" placeholder="First Period Grade (G1)"
+    class="input" required>
+
+<input name="G2" type="number" min="0" max="20" placeholder="Second Period Grade (G2)"
+    class="input" required>
+
+        <!-- Button -->
+        <button type="submit"
+            onclick="this.innerText='Predicting...'"
+            class="col-span-2 bg-indigo-600 text-white p-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200">
+            Predict Grade
+        </button>
+
+    </form>
+
+    <!-- Result -->
+    {% if prediction_text %}
+    <div class="mt-6 p-5 rounded-xl bg-indigo-50 text-center shadow-sm">
+
+        <!-- Prediction -->
+        <p class="text-xl font-bold text-indigo-700">
+            {{ prediction_text }}
+        </p>
+
+        <!-- Divider -->
+        <div class="my-3 border-t border-indigo-200"></div>
+
+        <!-- Tip -->
+        {% if tip_text %}
+        <p class="text-sm text-gray-600 flex items-center justify-center gap-2">
+            💡 {{ tip_text }}
+        </p>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- Tailwind reusable class -->
+<style>
+    .input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        outline: none;
+        transition: 0.2s;
+    }
+    .input:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+    }
+</style>
+
+</body>
+</html>
